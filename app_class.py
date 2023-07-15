@@ -17,7 +17,7 @@ class User:
         self.__contact_no = int(input("Enter your contact number: "))
 
     def save_info(self, writer):
-        with open("user_info.csv", "w") as csvfile:
+        with open("user_info.csv", "w", newline="") as csvfile:
             writer = csv.writer(csvfile)
 
             writer.writerow(["Name", "Contact Number"])
@@ -26,4 +26,6 @@ class User:
 if __name__ == "__main__":
     user = User()
     user.get_user_info()
-    user.save_info()
+    with open("user_info.csv", "w", newline="") as csvfile:
+        writer = csv.writer(csvfile)
+        user.save_info(writer)
