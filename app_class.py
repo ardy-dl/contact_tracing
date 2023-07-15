@@ -16,8 +16,14 @@ class User:
         self.__name = input("Enter your name: ")
         self.__contact_no = int(input("Enter your contact number: "))
 
-    def display(self):
-        print(self.__name, self.__contact_no)
-user = User()
-user.get_user_info()
-user.display()
+    def save_info(self, writer):
+        with open("user_info.csv", "w") as csvfile:
+            writer = csv.writer(csvfile)
+
+            writer.writerow(["Name", "Contact Number"])
+            writer.writerow([self.__name, self.__contact_no])
+
+if __name__ == "__main__":
+    user = User()
+    user.get_user_info()
+    user.save_info()
