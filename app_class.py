@@ -7,6 +7,8 @@
     # date
     # time
 # create a form to fill out with the ff: 
+import csv
+
 class User:
     def __init__(self):
         self.__name = None
