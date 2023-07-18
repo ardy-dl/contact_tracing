@@ -46,8 +46,8 @@ class Content:
     def covid_test(self):
         test = input("Have you been tested for covid-19 in the last 14 days?(yes/no): ").lower()
         if test == "yes":
-            result = print("What is the result? ")
-            self.__test(result)
+            result = input("What is the result? ")
+            self.__test = result.lower()
         else:
             self.__test = "no"
         
