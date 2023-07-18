@@ -6,10 +6,10 @@ class Content:
 
     def get_symptoms(self):
         print("Do you have any of the following: (yes/no)")
-        symptoms_list = ["Sore Throat ", "Fever ", "Cough ", "Runny Nose ", "Loss of Sense of Smell ", "Loss of Sense of Taste ", "Abdominal Pain ", "Diarrhea "]
+        symptoms_list = ["Sore Throat", "Fever", "Cough", "Runny Nose", "Loss of Sense of Smell", "Loss of Sense of Taste", "Abdominal Pain", "Diarrhea"]
         for symptom in symptoms_list:
             while True:
-                answer = input(symptom).lower()
+                answer = input(symptom + " (yes/no) ").strip().lower()
                 if answer == "yes" or answer == "no":
                     self.__symptoms[symptom] = answer
                     break
