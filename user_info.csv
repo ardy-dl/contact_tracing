@@ -1,2 +1,2 @@
-Name,Contact Number,Address,Temperature,Destination,Vaccination Status,symptoms,History,Covid-test
-Denise,9876426718,"Guiguinto, Bulacan",35.9,Watsons,0,"{'Sore Throat': 'no', 'Fever': 'no', 'Cough': 'no', 'Runny Nose': 'no', 'Loss of Sense of Smell': 'no', 'Loss of Sense of Taste': 'no', 'Abdominal Pain': 'no', 'Diarrhea': 'no'}",,negative
+Name,Contact Number,Address,Temperature,Destination,Vaccination Status,symptoms,History,Exposure Date,Covid-test
+fkkh,9753784570,jyvk,65.9,fyvl,0,"{'Sore Throat': 'no', 'Fever': 'no', 'Cough': 'no', 'Runny Nose': 'no', 'Loss of Sense of Smell': 'no', 'Loss of Sense of Taste': 'no', 'Abdominal Pain': 'no', 'Diarrhea': 'no'}",,negative,June 1
