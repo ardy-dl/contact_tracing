@@ -4,6 +4,21 @@ class Content:
     def __init__(self):
         self.__symptoms = {}
         self.__exposure = ""
+        self.__vaccination_status = ""
+
+    def get_vaccination_status(self):
+        status = int(input("Select your vaccination status: (1,2,3,4 or 5) \n 1. Not Yet \n 2. 1st Dose \n 3. 2nd Dose(Fully vaccinated) \n 4. 1st Booster Shot \n 5. 2nd Booster Shot \n Answer: " ))
+        if status in ["1", "2", "3", "4", "5"]:
+            if status == "1":
+                self.__vaccination_status = "Not Yet"
+            elif status == "2":
+                self.__vaccination_status = "1st Dose"
+            elif status == "3":
+                self.__vaccination_status = "2nd Dose"
+            elif status == "4":
+                self.__vaccination_status = "1st Booster Shot"
+            else:
+                self.__vaccination_status = "2nd Booster Shot"
 
     def get_symptoms(self):
         print("Are you experiencing any symptoms in the past 7 days such as: ")
@@ -28,20 +43,23 @@ class Content:
             raise ValueError("Invalid entry. Please answer yes or no only.")
     
     def display(self):
+        print(self.__vaccination_status)
         print("Symptoms:")
         for symptom, answer in self.__symptoms.items():
             print(symptom,":", answer)
-        print
+        
 
    
 
-    #vaccination
+   
 
 def main():
     hdf = Content()
     hdf.get_symptoms()
     hdf.get_exposure()
+    hdf. get_vaccination_status()
     hdf.display()
+    
 
 if __name__ == "__main__":
     main()
