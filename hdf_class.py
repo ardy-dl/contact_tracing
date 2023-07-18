@@ -2,10 +2,10 @@
 
 class Content:
     def __init__(self):
+        self.__vaccination_status = 0
         self.__symptoms = {}
-        self.__exposure = ""
-        self.__vaccination_status = ""
-        self.__test = ""
+        self.__exposure = None
+        self.__test = None
 
     def get_vaccination_status(self):
         status = int(input("Select your vaccination status: (1,2,3,4 or 5) \n 1. Not Yet \n 2. 1st Dose \n 3. 2nd Dose(Fully vaccinated) \n 4. 1st Booster Shot \n 5. 2nd Booster Shot \n Answer: " ))
@@ -43,7 +43,7 @@ class Content:
         else:
             raise ValueError("Invalid entry. Please answer yes or no only.")
         
-    def covid_test(self):
+    def get_covid_test(self):
         test = input("Have you been tested for covid-19 in the last 14 days?(yes/no): ").lower()
         if test == "yes":
             result = input("What is the result? ")
