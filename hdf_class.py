@@ -5,6 +5,7 @@ class Content:
         self.__symptoms = {}
         self.__exposure = ""
         self.__vaccination_status = ""
+        self.__test = ""
 
     def get_vaccination_status(self):
         status = int(input("Select your vaccination status: (1,2,3,4 or 5) \n 1. Not Yet \n 2. 1st Dose \n 3. 2nd Dose(Fully vaccinated) \n 4. 1st Booster Shot \n 5. 2nd Booster Shot \n Answer: " ))
@@ -41,7 +42,16 @@ class Content:
             return self.__exposure
         else:
             raise ValueError("Invalid entry. Please answer yes or no only.")
-    
+        
+    def covid_test(self):
+        test = input("Have you been tested for covid-19 in the last 14 days?(yes/no): ").lower()
+        if test == "yes":
+            result = print("What is the result? ")
+            self.__test(result)
+        else:
+            self.__test = "no"
+        
+        
     def display(self):
         print(self.__vaccination_status)
         print("Symptoms:")
@@ -58,6 +68,7 @@ def main():
     hdf.get_symptoms()
     hdf.get_exposure()
     hdf. get_vaccination_status()
+    hdf.covid_test()
     hdf.display()
     
 
