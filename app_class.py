@@ -35,6 +35,6 @@ class User:
         with open("user_info.csv", "w", newline="") as csvfile:
             writer = csv.writer(csvfile)
 
-            writer.writerow(["Name", "Contact Number", "Address", "Temperature", "Destination","Vaccination Status", "symptoms", "History","Exposure Date", "Covid-test"])
+            writer.writerow(["Name", "Contact Number", "Address", "Temperature", "Destination","Vaccination Status", "symptoms", "History", "Covid-test", "Exposure Date"])
             writer.writerow([self.__name, self.__contact_no, self.__address, self.__temp, self.__destination, self.__content._Content__vaccination_status, self.__content._Content__symptoms, "", self.__content._Content__exposure, self.__content._Content__exposure_date, self.__content._Content__test])
 
