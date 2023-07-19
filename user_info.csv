@@ -1,2 +1,6 @@
 Name,Contact Number,Address,Temperature,Destination,Vaccination Status,symptoms,History,Covid-test,Exposure Date
-Denise,978347382,gusfnd,35.9,kbdfds,,"{'Sore Throat': 'no', 'Fever': 'no', 'Cough': 'no', 'Runny Nose': 'no', 'Loss of Sense of Smell': 'no', 'Loss of Sense of Taste': 'no', 'Abdominal Pain': 'no', 'Diarrhea': 'no'}",,yes,June 1,negative
+lea,98625372,duafkdfs,36.0,sakba,,"{'Sore Throat': 'yes', 'Fever': 'yes', 'Cough': 'yes', 'Runny Nose': 'yes', 'Loss of Sense of Smell': 'yes', 'Loss of Sense of Taste': 'yes', 'Abdominal Pain': 'yes', 'Diarrhea': 'yes'}",,no,N/A,no
+denise,97638273921,guadb,35.9,fhdsbla,,"{'Sore Throat': 'no', 'Fever': 'no', 'Cough': 'no', 'Runny Nose': 'no', 'Loss of Sense of Smell': 'no', 'Loss of Sense of Taste': 'no', 'Abdominal Pain': 'no', 'Diarrhea': 'no'}",,no,N/A,no
+bsdbd,973742,nbdjssd,56.3,dshil,,"{'Sore Throat': 'no', 'Fever': 'no', 'Cough': 'no', 'Runny Nose': 'no', 'Loss of Sense of Smell': 'no', 'Loss of Sense of Taste': 'no', 'Abdominal Pain': 'no', 'Diarrhea': 'no'}",,no,N/A,no
+hiods,9743,sdlnfs,32.0,fdjl,,"{'Sore Throat': 'no', 'Fever': 'no', 'Cough': 'no', 'Runny Nose': 'no', 'Loss of Sense of Smell': 'no', 'Loss of Sense of Taste': 'no', 'Abdominal Pain': 'no', 'Diarrhea': 'no'}",,no,N/A,no
+dskfds,64732,bskdla,46.0,bksa,,"{'Sore Throat': 'yes', 'Fever': 'yes', 'Cough': 'yes', 'Runny Nose': 'yes', 'Loss of Sense of Smell': 'yes', 'Loss of Sense of Taste': 'yes', 'Abdominal Pain': 'yes', 'Diarrhea': 'yes'}",,yes,June 1,negative
