@@ -10,14 +10,14 @@ class Content:
 
     def get_vaccination_status(self):
         status = int(input("Select your vaccination status: (1,2,3,4 or 5) \n 1. Not Yet \n 2. 1st Dose \n 3. 2nd Dose(Fully vaccinated) \n 4. 1st Booster Shot \n 5. 2nd Booster Shot \n Answer: " ))
-        if status in ["1", "2", "3", "4", "5"]:
-            if status == "1":
+        if status in [1, 2, 3, 4, 5]:
+            if status == 1:
                 self.__vaccination_status = "Not Yet"
-            elif status == "2":
+            elif status == 2:
                 self.__vaccination_status = "1st Dose"
-            elif status == "3":
+            elif status == 3:
                 self.__vaccination_status = "2nd Dose"
-            elif status == "4":
+            elif status == 4:
                 self.__vaccination_status = "1st Booster Shot"
             else:
                 self.__vaccination_status = "2nd Booster Shot"
@@ -53,21 +53,16 @@ class Content:
         
         
     def display(self):
-        print(self.__vaccination_status)
         print("Symptoms:")
         for symptom, answer in self.__symptoms.items():
             print(symptom,":", answer)
         
 
-   
-
-   
-
 def main():
     hdf = Content()
     hdf.get_symptoms()
     hdf.get_exposure()
-    hdf. get_vaccination_status()
+    hdf.get_vaccination_status()
     hdf.covid_test()
     hdf.display()
     
