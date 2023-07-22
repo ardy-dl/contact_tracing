@@ -53,12 +53,34 @@ class HealthDeclarationFormApp:
 
         self.__exposure_dropdown.bind("<<ComboboxSelected>>", self.toggle_exposure_date)
 
+        self.__covid_test_var = tk.StringVar(self.__root)
+        self.__covid_test_var.set("No")
+        covid_test_choices = ["Yes", "No"]
+        self.__covid_test_dropdown = ttk.Combobox(self.__root, textvariable=self.__covid_test_var, values=covid_test_choices)
+        self.__covid_test_dropdown.grid(row=10+len(symptoms_list), column=1)
+
+        self.__covid_test_result_label = tk.Label(self.__root, text="Covid Test Result:")
+        self.__covid_test_result_entry = tk.Entry(self.__root, state="disabled")
+        self.__covid_test_result_label.grid(row=11+len(symptoms_list), column=0, sticky="e")
+        self.__covid_test_result_entry.grid(row=11+len(symptoms_list), column=1)
+
+        self.__covid_test_dropdown.bind("<<ComboboxSelected>>", self.toggle_covid_test_result)
+
     def toggle_exposure_date(self, event):
         if self.__exposure_var.get() == "Yes":
             self.__exposure_date_entry.config(state="normal")
         else:
             self.__exposure_date_entry.delete(0, tk.END)
             self.__exposure_date_entry.config(state="disabled")
+
+    def toggle_covid_test_result(self, event):
+        if self.__covid_test_var.get() == "Yes":
+            self.__covid_test_result_entry.config(state="normal")
+        else:
+            self.__covid_test_result_entry.delete(0, tk.END)
+            self.__covid_test_result_entry.config(state="disabled")
+
+    
 
 
     def run(self):
