@@ -6,7 +6,7 @@
     # date
     # time
 # create a form to fill out with the ff: 
-from hdf_class import Content
+from content_class import Content
 import csv
 
 class User:

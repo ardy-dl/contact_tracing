@@ -1,5 +1,4 @@
 
-
 class Content:
     def __init__(self):
         self.__vaccination_status = None
@@ -49,7 +48,7 @@ class Content:
             result = input("What is the result? ")
             self.__test = result.lower()
         else:
-            self.__test = "no"
+            self.__test = "N/A"
         
         
     def display(self):
