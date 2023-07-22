@@ -35,9 +35,9 @@ class HealthDeclarationFormApp:
 
         symptoms_list = ["Sore Throat", "Fever", "Cough", "Runny Nose", "Loss of Sense of Smell", "Loss of Sense of Taste", "Abdominal Pain", "Diarrhea", "None of the Above"]
         self.__symptoms_vars = {symptom: tk.BooleanVar() for symptom in symptoms_list}
-        tk.Label(self.__root, text="Symptoms:").grid(row=6, column=0, sticky="e")
+        tk.Label(self.__root, text="Are you experiencing any symptoms in the past 7 days such as:").grid(row=6, column=1, sticky="e")
         for idx, symptom in enumerate(symptoms_list):
-            tk.Checkbutton(self.__root, text=symptom, variable=self.__symptoms_vars[symptom]).grid(row=6+idx, column=1, sticky="w") 
+            tk.Checkbutton(self.__root, text=symptom, variable=self.__symptoms_vars[symptom]).grid(row=7+idx, column=1, sticky="w") 
 
     def run(self):
         self.__root.mainloop()
