@@ -39,6 +39,28 @@ class HealthDeclarationFormApp:
         for idx, symptom in enumerate(symptoms_list):
             tk.Checkbutton(self.__root, text=symptom, variable=self.__symptoms_vars[symptom]).grid(row=7+idx, column=1, sticky="w") 
 
+        tk.Label(self.__root, text="Do you have any exposure to a probable or confirmed covid case:").grid(row=7+len(symptoms_list), column=1, sticky="e")
+        self.__exposure_var = tk.StringVar(self.__root)
+        self.__exposure_var.set("No")
+        exposure_choices = ["Yes", "No"]
+        self.__exposure_dropdown = ttk.Combobox(self.__root, state="readonly", textvariable=self.__exposure_var, values=exposure_choices)
+        self.__exposure_dropdown.grid(row=8+len(symptoms_list), column=1)
+
+        self.__exposure_date_label = tk.Label(self.__root, text="Exposure Date:")
+        self.__exposure_date_entry = tk.Entry(self.__root, state="disabled")
+        self.__exposure_date_label.grid(row=9+len(symptoms_list), column=0, sticky="e")
+        self.__exposure_date_entry.grid(row=9+len(symptoms_list), column=1)
+
+        self.__exposure_dropdown.bind("<<ComboboxSelected>>", self.toggle_exposure_date)
+
+    def toggle_exposure_date(self, event):
+        if self.__exposure_var.get() == "Yes":
+            self.__exposure_date_entry.config(state="normal")
+        else:
+            self.__exposure_date_entry.delete(0, tk.END)
+            self.__exposure_date_entry.config(state="disabled")
+
+
     def run(self):
         self.__root.mainloop()
 
