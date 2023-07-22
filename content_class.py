@@ -23,7 +23,7 @@ class Content:
 
     def get_symptoms(self):
         print("Are you experiencing any symptoms in the past 7 days such as: ")
-        symptoms_list = ["Sore Throat", "Fever", "Cough", "Runny Nose", "Loss of Sense of Smell", "Loss of Sense of Taste", "Abdominal Pain", "Diarrhea"]
+        symptoms_list = ["Sore Throat", "Fever", "Cough", "Runny Nose", "Loss of Sense of Smell", "Loss of Sense of Taste", "Abdominal Pain", "Diarrhea", "None of the Above"]
         for symptom in symptoms_list:
             while True:
                 answer = input(symptom + " (yes/no) ").strip().lower()

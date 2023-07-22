@@ -26,7 +26,6 @@ class HealthDeclarationFormApp:
             entry = tk.Entry(self.__root, width=50) 
             entry.grid(row=i, column=1, columnspan=2, padx=10, pady=5, sticky="ew")
 
-
         vaccination_status_choices = ["Not Yet", "1st Dose", "2nd Dose", "1st Booster Shot", "2nd Booster Shot"]
         tk.Label(self.__root, text="Vaccination Status:").grid(row=5, column=0, sticky="e")
         self.__vaccination_status_var = tk.StringVar(self.__root)
@@ -34,6 +33,11 @@ class HealthDeclarationFormApp:
         self.__vaccination_status_dropdown = ttk.Combobox(self.__root, state="readonly", textvariable=self.__vaccination_status_var, values=vaccination_status_choices)
         self.__vaccination_status_dropdown.grid(row=5, column=1)
 
+        symptoms_list = ["Sore Throat", "Fever", "Cough", "Runny Nose", "Loss of Sense of Smell", "Loss of Sense of Taste", "Abdominal Pain", "Diarrhea", "None of the Above"]
+        self.__symptoms_vars = {symptom: tk.BooleanVar() for symptom in symptoms_list}
+        tk.Label(self.__root, text="Symptoms:").grid(row=6, column=0, sticky="e")
+        for idx, symptom in enumerate(symptoms_list):
+            tk.Checkbutton(self.__root, text=symptom, variable=self.__symptoms_vars[symptom]).grid(row=6+idx, column=1, sticky="w") 
 
     def run(self):
         self.__root.mainloop()

@@ -32,6 +32,9 @@ class User:
         self.__content.get_covid_test()
 
     def save_info(self, writer):
+
+        checked_symptoms = [symptom for symptom, var in self.symptoms_checkboxes.items() if var.get()]
+
         with open("user_info.csv", "a", newline="") as csvfile:
             writer = csv.writer(csvfile)
         
@@ -42,7 +45,7 @@ class User:
                 self.__temp, 
                 self.__destination, 
                 self.__content._Content__vaccination_status, 
-                self.__content._Content__symptoms, 
+                ",".join(self.__content.get_symptoms()),
                 self.__content._Content__exposure, 
                 self.__content._Content__exposure_date, 
                 self.__content._Content__test])
