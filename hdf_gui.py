@@ -1,12 +1,14 @@
 import tkinter as tk
 from tkinter import ttk
 from app_class import User
+import csv
 
 class HealthDeclarationFormApp:
-    def __init__(self, root):
+    def __init__(self, root, writer):
         self.__root = root
         self.__root.title("Health Declaration Form")
         self.__set_window_position()
+        self.__writer = writer
         self.content = User()
         self.create_widgets()
         
@@ -53,18 +55,21 @@ class HealthDeclarationFormApp:
 
         self.__exposure_dropdown.bind("<<ComboboxSelected>>", self.toggle_exposure_date)
 
+        tk.Label(self.__root, text="Have you been tested for covid-19 in the last 14 days?(yes/no): ").grid(row=10+len(symptoms_list), column=1, sticky="e")
         self.__covid_test_var = tk.StringVar(self.__root)
         self.__covid_test_var.set("No")
         covid_test_choices = ["Yes", "No"]
         self.__covid_test_dropdown = ttk.Combobox(self.__root, textvariable=self.__covid_test_var, values=covid_test_choices)
-        self.__covid_test_dropdown.grid(row=10+len(symptoms_list), column=1)
+        self.__covid_test_dropdown.grid(row=11+len(symptoms_list), column=1)
 
         self.__covid_test_result_label = tk.Label(self.__root, text="Covid Test Result:")
         self.__covid_test_result_entry = tk.Entry(self.__root, state="disabled")
-        self.__covid_test_result_label.grid(row=11+len(symptoms_list), column=0, sticky="e")
-        self.__covid_test_result_entry.grid(row=11+len(symptoms_list), column=1)
+        self.__covid_test_result_label.grid(row=13+len(symptoms_list), column=0, sticky="e")
+        self.__covid_test_result_entry.grid(row=13+len(symptoms_list), column=1)
 
         self.__covid_test_dropdown.bind("<<ComboboxSelected>>", self.toggle_covid_test_result)
+
+        tk.Button(self.__root, text="Submit", command=self.submit_form).grid(row=14+len(symptoms_list), columnspan=2)
 
     def toggle_exposure_date(self, event):
         if self.__exposure_var.get() == "Yes":
@@ -80,8 +85,23 @@ class HealthDeclarationFormApp:
             self.__covid_test_result_entry.delete(0, tk.END)
             self.__covid_test_result_entry.config(state="disabled")
 
+    def submit_form(self):
+        with open("user_info.csv", "a", newline="") as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow([
+                self.__name_entry.get(),
+                self.__contact_number_entry.get(),
+                self.__address_entry.get(),
+                self.__temperature_entry.get(),
+                self.__destination_entry.get(),
+                self.__vaccination_status_var.get(),
+                ", ".join(symptom for symptom, var in self.__symptoms_vars.items() if var.get()),
+                self.__exposure_var.get(),
+                self.__exposure_date_entry.get(),
+                self.__covid_test_var.get(),
+                self.__covid_test_result_entry.get()
+            ])
     
-
 
     def run(self):
         self.__root.mainloop()
