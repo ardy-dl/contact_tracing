@@ -4,12 +4,11 @@ from app_class import User
 import csv
 
 class HealthDeclarationFormApp:
-    def __init__(self, root, writer):
+    def __init__(self, root):
         self.__root = root
         self.__root.title("Health Declaration Form")
         self.__set_window_position()
-        self.__writer = writer
-        self.content = User()
+        self.__user = User()
         self.create_widgets()
         
     def __set_window_position(self): 
@@ -27,6 +26,17 @@ class HealthDeclarationFormApp:
             tk.Label(self.__root, text=label + ":").grid(row=i, column=0, padx=10, pady=5, sticky="nsew")
             entry = tk.Entry(self.__root, width=50) 
             entry.grid(row=i, column=1, columnspan=2, padx=10, pady=5, sticky="ew")
+
+            if label == "Name":
+                entry.bind("<FocusOut>", self.__user.get_name)
+            elif label == "Contact Number":
+                entry.bind("<FocusOut>", self.__user.get_contact_no)
+            elif label == "Address":
+                entry.bind("<FocusOut>", self.__user.get_address)
+            elif label == "Temperature":
+                entry.bind("<FocusOut>", self.__user.get_temp)
+            elif label == "Destination":
+                entry.bind("<FocusOut>", self.__user.get_destination)
 
         vaccination_status_choices = ["Not Yet", "1st Dose", "2nd Dose", "1st Booster Shot", "2nd Booster Shot"]
         tk.Label(self.__root, text="Vaccination Status:").grid(row=5, column=0, sticky="e")
@@ -86,25 +96,25 @@ class HealthDeclarationFormApp:
             self.__covid_test_result_entry.config(state="disabled")
 
     def submit_form(self):
+        self.__user.name = self.__name_entry.get()
+        self.__user.contact_no = self.__contact_number_entry.get()
+        self.__user.address = self.__address_entry.get()
+        self.__user.temp = float(self.__temperature_entry.get())
+        self.__user.destination = self.__destination_entry.get()
+        self.__user.vaccination_status = self.__vaccination_status_var.get()
+        self.__user.symptoms = {symptom: "Yes" if var.get() else "No" for symptom, var in self.__symptoms_vars.items()}
+        self.__user.exposure = self.__exposure_var.get()
+        self.__user.exposure_date = self.__exposure_date_entry.get()
+        self.__user.covid_test = self.__covid_test_var.get()
+        self.__user.covid_test_result = self.__covid_test_result_entry.get()
+
+        
         with open("user_info.csv", "a", newline="") as csvfile:
             writer = csv.writer(csvfile)
-            writer.writerow([
-                self.__name_entry.get(),
-                self.__contact_number_entry.get(),
-                self.__address_entry.get(),
-                self.__temperature_entry.get(),
-                self.__destination_entry.get(),
-                self.__vaccination_status_var.get(),
-                ", ".join(symptom for symptom, var in self.__symptoms_vars.items() if var.get()),
-                self.__exposure_var.get(),
-                self.__exposure_date_entry.get(),
-                self.__covid_test_var.get(),
-                self.__covid_test_result_entry.get()
-            ])
-    
+            self.__user.save_info(writer)
 
     def run(self):
-        self.__root.mainloop()
+            self.__root.mainloop() 
 
 if __name__ == "__main__":
     root = tk.Tk()
