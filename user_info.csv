@@ -1,2 +1,4 @@
-Name,Contact Number,Address,Temperature,Destination,Vaccination Status,Symptoms,Exposure,Exposure Date,Covid-test,Date/Time
-Tate McRae,09764736215,"Bocaue, Bulacan",36,Watson,1st Booster Shot,['None of the Above'],No,,No,,2023-07-23 12:41:54
+Name,Contact Number,Address,Temperature,Destination,Vaccination Status,Symptoms,Exposure,Exposure Date,Covid-test,Result,Date/Time
+KHLOE ROSE,09736251435,"Guiguinto, Bulacan",35.9,Watsons,1st Booster Shot,['None of the Above'],No,,No,,2023-07-23 13:32:11
+KEN SUSON,09234157281,"Marilao, Bulacan",36,Watsons,1st Booster Shot,['None of the Above'],Yes,June 1,Yes,Negative,2023-07-23 13:33:08
+TATE MCRAE,09557283811,"Malolos, Bulacan",36.8,Watsons,1st Booster Shot,"['Sore Throat', 'Runny Nose']",Yes,July 12,Yes,Pending,2023-07-23 13:34:10

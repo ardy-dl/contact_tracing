@@ -13,10 +13,10 @@ class SearchApp:
         screen_width = self.__root.winfo_screenwidth()
         screen_height = self.__root.winfo_screenheight()
 
-        x = int((screen_width - 600) / 2)
-        y = int((screen_height - 600) / 2)
+        x = int((screen_width - 650) / 2)
+        y = int((screen_height - 300) / 2)
 
-        self.__root.geometry(f"600x600+{x}+{y}")
+        self.__root.geometry(f"650x300+{x}+{y}")
 
     def create_widgets(self):
         self.search_entry_var = tk.StringVar()
@@ -26,32 +26,32 @@ class SearchApp:
 
         tk.Button(self.__root, text="Search", command=self.search_data).grid(row=1, column=0, columnspan=3, padx=10, pady=5)
 
-def search_data(search_criteria):
-    with open("user_info.csv", newline="") as csvfile:
-        reader = csv.reader(csvfile)
-        next(reader)
+    def search_data(self):
+        search_criteria = self.search_entry_var.get()
 
-        matching_entries = []
-        for row in reader:
-            if search_criteria in row[0] or search_criteria in row[-1]:
-                matching_entries.append(row)
+        with open("user_info.csv", newline="") as csvfile:
+            reader = csv.reader(csvfile)
+            next(reader) 
 
-    return matching_entries
+            matching_entries = []
+            for row in reader:
+                if search_criteria in row[0] or search_criteria in row[-1]:
+                    matching_entries.append(row)
 
-if __name__ == "__main__":
-    search_criteria = input("Enter the name or date/time to search: ")
-    results = search_data(search_criteria)
+        if matching_entries:
+            result_window = tk.Toplevel(self.__root)
+            result_window.title("Search Results")
 
-    if results:
-        for header in ["Name", "Contact Number", "Address", "Temperature", "Destination",
-                       "Vaccination Status", "Symptoms", "Exposure", "Exposure Date", "Covid-test", "Result",
-                       "Date/Time"]:
-            print(f"{header: <20}", end="")  
-        print()  
+            for i, header in enumerate(["Name", "Contact Number", "Address", "Temperature", "Destination",
+                                        "Vaccination Status", "Symptoms", "Exposure", "Exposure Date", "Covid-test","Result",
+                                        "Date/Time"]):
+                tk.Label(result_window, text=header, borderwidth=1, relief="solid").grid(row=0, column=i, padx=5, pady=5)
 
-        for row in results:
-            for value in row:
-                print(f"{value: <20}", end="")  
-            print()  
-    else:
-        print("No matching entries found for the given search criteria.")
+            for row_idx, row in enumerate(matching_entries):
+                for col_idx, value in enumerate(row):
+                    tk.Label(result_window, text=value, borderwidth=1, relief="solid").grid(row=row_idx + 1, column=col_idx, padx=5, pady=5)
+        else:
+            tk.messagebox.showinfo("No Match Found", "No matching entries found for the given search criteria.")
+    
+    def run(self):
+        self.__root.mainloop()

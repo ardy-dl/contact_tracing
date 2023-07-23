@@ -24,8 +24,9 @@ if __name__ == "__main__":
     def open_search_app():
         search_window = tk.Toplevel(root)
         search_app = SearchApp(search_window)
+        search_app.run()
 
-    fill_up_hdf_button = ttk.Button(root, text="Fill out hdf", command=open_hdf_form)
+    fill_up_hdf_button = ttk.Button(root, text="Fill Out HDF", command=open_hdf_form)
     fill_up_hdf_button.pack(pady=10)
 
     search_entries_button = ttk.Button(root, text="Search Entries", command=open_search_app)

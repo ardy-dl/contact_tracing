@@ -107,7 +107,7 @@ class HealthDeclarationFormApp:
 
 
     def submit_form(self):
-        name = self.entries[0].get()
+        name = self.entries[0].get().upper()
         contact_no = self.entries[1].get()
         address = self.entries[2].get()
         temperature = self.entries[3].get()
