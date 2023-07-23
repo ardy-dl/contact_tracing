@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from content_class import Content
+from datetime import datetime
 import csv
 
 class HealthDeclarationFormApp:
@@ -73,14 +74,14 @@ class HealthDeclarationFormApp:
 
         tk.Button(self.__root, text="Submit", command=self.submit_form).grid(row=14+len(symptoms_list), columnspan=2)
 
-    def toggle_exposure_date(self):
+    def toggle_exposure_date(self, event):
         if self.__exposure_var.get() == "Yes":
             self.__exposure_date_entry.config(state="normal")
         else:
             self.__exposure_date_entry.delete(0, tk.END)
             self.__exposure_date_entry.config(state="disabled")
 
-    def toggle_covid_test_result(self):
+    def toggle_covid_test_result(self, event):
         if self.__covid_test_var.get() == "Yes":
             self.__covid_test_result_entry.config(state="normal")
         else:
@@ -118,6 +119,8 @@ class HealthDeclarationFormApp:
         covid_test = self.__covid_test_var.get()
         covid_test_result = self.__covid_test_result_entry.get()
 
+        current_date_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
         content = Content()
         content.set_name(name)
         content.set_contact_no(contact_no)
@@ -131,8 +134,13 @@ class HealthDeclarationFormApp:
         content.set_exposure(exposure, exposure_date)
         content.set_covid_test(covid_test, covid_test_result)
 
-        with open("user.info.csv", "a", newline="") as csvfile:
-           content.save_to_csv(csvfile)
+        row_data = [name, contact_no, address, temperature, destination, vaccination_status, str(checked_symptoms), exposure, exposure_date, covid_test, covid_test_result, current_date_time]
+
+
+        with open("user_info.csv", "a", newline="") as csvfile:
+           writer = csv.writer(csvfile)
+           
+           writer.writerow(row_data)
 
         self.reset_form()
 

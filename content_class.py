@@ -57,6 +57,23 @@ class Content:
                 self.__test_result = "N/A"
         else:
             raise ValueError("Invalid covid test status.")
+        
+    def write_header_if_not_exists(filename):
+        header = ["Name", "Contact Number", "Address", "Temperature", "Destination", "Vaccination Status", "Symptoms", "Exposure", "Exposure Date", "Covid-test", "Date/Time"]
+
+        file_exists = False
+        try:
+            with open(filename, "r") as csvfile:
+                reader = csv.reader(csvfile)
+                if header == next(reader):
+                    file_exists = True
+        except FileNotFoundError:
+            pass
+
+        if not file_exists:
+            with open(filename, "a+", newline="") as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow(header)
 
     def save_to_csv(self, csvfile):
         writer = csv.writer(csvfile)
