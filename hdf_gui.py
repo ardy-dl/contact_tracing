@@ -18,9 +18,9 @@ class HealthDeclarationFormApp:
         screen_height = self.__root.winfo_screenheight()
 
         x = int((screen_width - 600) / 2)
-        y = int((screen_height - 400) / 2)
+        y = int((screen_height - 600) / 2)
 
-        self.__root.geometry(f"600x400+{x}+{y}")
+        self.__root.geometry(f"600x600+{x}+{y}")
 
     def create_widgets(self):
         labels = ["Name", "Contact Number", "Address", "Temperature", "Destination"]
