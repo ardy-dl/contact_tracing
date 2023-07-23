@@ -85,3 +85,24 @@ class Content:
         symptoms_str = ",".join(self.set_symptoms)
         return [self.__name, self.__contact_no, self.__address, self.__temp, self.__destination, self.__vaccination_status,
                 symptoms_str, self.__exposure, self.__exposure_date, self.__test, self.__test_result]
+
+    def search_entries(self, search_date_time, search_name):
+        matching_rows = []
+        with open("user_info.csv", "r") as csvfile:
+            reader = csv.reader(csvfile)
+            header = next(reader)  # Skip the header row
+            for row in reader:
+                date_time_str = row[-1]  # Last element of the row is the date/time
+                name = row[0]  # First element of the row is the name
+
+                if search_date_time and search_name:
+                    if date_time_str == search_date_time and name == search_name:
+                        matching_rows.append(row)
+                elif search_date_time:
+                    if date_time_str == search_date_time:
+                        matching_rows.append(row)
+                elif search_name:
+                    if name == search_name:
+                        matching_rows.append(row)
+
+        return matching_rows
