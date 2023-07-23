@@ -12,7 +12,7 @@ if __name__ == "__main__":
             print("Health Declaration Form")
 
             root = tk.Tk()
-            app = HealthDeclarationFormApp(root)
+            app = HealthDeclarationFormApp(root, writer)
             root.mainloop()
 
             another_entry = input("Do you want to add another entry? (yes/no): ")
