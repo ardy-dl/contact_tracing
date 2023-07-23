@@ -1,3 +1,5 @@
+import tkinter as tk
+from tkinter import ttk
 import csv
 
 class SearchApp:
@@ -5,6 +7,7 @@ class SearchApp:
         self.__root = root
         self.__root.title("Search Entries")
         self.__set_window_position()
+        self.create_widgets()
 
     def __set_window_position(self): 
         screen_width = self.__root.winfo_screenwidth()
@@ -14,6 +17,14 @@ class SearchApp:
         y = int((screen_height - 600) / 2)
 
         self.__root.geometry(f"600x600+{x}+{y}")
+
+    def create_widgets(self):
+        self.search_entry_var = tk.StringVar()
+        tk.Label(self.__root, text="Enter Name(in ALL CAPS) or Date/Time(MM-DD):").grid(row=0, column=0, padx=10, pady=5, sticky="w")
+        search_entry = tk.Entry(self.__root, textvariable=self.search_entry_var, width=50)
+        search_entry.grid(row=0, column=1, columnspan=2, padx=10, pady=5, sticky="ew")
+
+        tk.Button(self.__root, text="Search", command=self.search_data).grid(row=1, column=0, columnspan=3, padx=10, pady=5)
 
 def search_data(search_criteria):
     with open("user_info.csv", newline="") as csvfile:

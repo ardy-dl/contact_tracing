@@ -3,6 +3,7 @@ from tkinter import ttk
 import csv
 from hdf_gui import HealthDeclarationFormApp
 from content_class import Content
+from search_gui import SearchApp    
 
 if __name__ == "__main__":
     root = tk.Tk()
@@ -20,7 +21,14 @@ if __name__ == "__main__":
         hdf_form_app.run()      
         root.mainloop()
 
+    def open_search_app():
+        search_window = tk.Toplevel(root)
+        search_app = SearchApp(search_window)
+
     fill_up_hdf_button = ttk.Button(root, text="Fill out hdf", command=open_hdf_form)
     fill_up_hdf_button.pack(pady=10)
+
+    search_entries_button = ttk.Button(root, text="Search Entries", command=open_search_app)
+    search_entries_button.pack(pady=10)
 
 root.mainloop()
